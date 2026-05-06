@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Считать ворон</title>
+</head>
+
+<body>
+
+    <h1>Считать ворон</h1>
+    <div>
+        <input type="number" id="num" required>
+        <button id="CrowButton">Считать</button>
+    </div>
+
+    <script>
+        "use strict";
+        function calcCrow() {
+            const num = parseInt(document.getElementById("num").value);
+            if (num < 0) {
+                alert("Пожалуйста, введите корректное число ворон");
+                return;
+            }
+
+            let ending;
+
+            if (num %100 >= 10 && num %100 <= 19) {
+                ending = "ворон";
+            }
+            else {
+                switch (num % 10) {
+                    case 1:
+                        ending = "ворона";
+                        break;
+                    case 2:
+                    case 3:
+                    case 4:
+                        ending = "вороны";
+                        break;
+                    default:
+                        ending = "ворон";
+                }
+            }
+
+            alert(`На ветке сидит ${num} ${ending}`);
+        };
+
+        document.getElementById('CrowButton').addEventListener('click', calcCrow);
+    </script>
+</body>
+
+</html>

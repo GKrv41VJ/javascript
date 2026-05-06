@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Пенсионный калькулятор</title>
+</head>
+
+<body>
+    <h1>Пенсионный калькулятор</h1>
+
+    <script>
+        'use strict';
+        function theCalc() {
+            const age = parseInt(document.getElementById("age").value);
+            const gender = document.querySelector('input[name="gender"]:checked')?.value;
+            const resultTextarea = document.getElementById("result");
+            let message = "";
+
+            if (age >= 0 && age <= 17) {
+                message = "Вам работать ещё рано — учитесь";
+            } else if (gender === "male" && age >= 18 && age <= 59) {
+                message = "Вам ещё работать и работать";
+            } else if (gender === "female" && age >= 18 && age <= 54) {
+                message = "Вам ещё работать и работать";
+            } else if (gender === "male" && age >= 60 && age <= 64) {
+                message = "Скоро пенсия!";
+            } else if (gender === "female" && age >= 55 && age <= 59) {
+                message = "Скоро пенсия!";
+            } else if (gender === "male" && age >= 65) {
+                message = "Вам пора на пенсию";
+            } else if (gender === "female" && age >= 60) {
+                message = "Вам пора на пенсию";
+            } else {
+                message = "Да кто ты такой?";
+            }
+
+            resultTextarea.value = message;
+        }
+    </script>
+
+    <form id="pensioncalc" onsubmit="theCalc(); return false;">
+        <table>
+            <tr>
+                <td>
+                    <label>Возраст</label>
+                </td>
+                <td>
+                    <input type="number" id="age" required>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Пол</label>
+                </td>
+                <td>
+                    <label for="Mn">
+                        <input type="radio" name="gender" id="Mn" required> Мужчина
+                    </label>
+                    <label for="Wmn">
+                        <input type="radio" name="gender" id="Wmn" required> Женщина
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <hr>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Результат:</label>
+                </td>
+                <td>
+                    <textarea id="result" readonly></textarea>
+                </td>
+            </tr>
+        </table>
+
+        <p>
+            <button type="submit">Готово</button>
+            <button type="reset">Очистить</button>
+        </p>
+    </form>
+</body>
+
+</html>
