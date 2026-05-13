@@ -3,16 +3,46 @@
 <head>
     <meta charset="utf-8">
     <title>HTML & CSS</title>
+
+    <style>
+        article {
+            background: #fffbdd;
+            border: 1px solid #d3b9b9;
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 20px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .container {
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(calc(450px), 1fr));
+            max-width: 1440px;
+            gap: 20px;
+        }
+    </style>
 </head>
 
 <body>
     <h1>Лабораторные работы (JavaScript)</h1>
-    <hr>
-    <section>
-        <h2>Лабораторная работа 1</h2>
+        <hr>
+    <div class="container">
+        <article>
+            <h2>Лабораторная работа 1</h2>
             <ol>
-                <li><a href="">Задача 1</a></li>
+                <li><a href="lab1/lab1_1.html">Задача 1</a></li>
+
+                <li><a href="lab1/lab1_2.html">Задача 2</a></li>
+
+                <li><a href="lab1/doc/doc.html">Задача 3</a></li>
+
+                <li><a href="lab1/lab1_4.html">Задача 4</a></li>
+
+                <li><a href="lab1/lab1_5.html">Задача 5</a></li>
             </ol>
-    </section>
+        </article>
+    </div>
 </body>
 </html>
