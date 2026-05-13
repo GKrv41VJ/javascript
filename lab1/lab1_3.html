@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ввод числа</title>
+</head>
+
+<body>
+    <h1>Страница "Ввод числа"</h1>
+    <p>Перейти на главную страницу:</p>
+    <a href="https://GKrv41VJ.github.io/javascript/" id="linktoMain">Получить число</a>
+
+    <script>
+        "use strict";
+        document.getElementById('linktoMain').addEventListener('click', function (event) {
+            event.preventDefault();
+            let number;
+            let link = this.href;
+
+            while (true) {
+                number = prompt("Введите число больше 100:", "");
+
+                if (number === null) {
+                    if (confirm("Число не введено. Всё равно перейти на главную страницу?")) {
+                        window.location.href = link;
+                    }
+                    return;
+                }
+                if (!isNaN(number) && Number(number) > 100) {
+                    window.location.href = link;
+                    return;
+                }
+
+                alert("Число меньше 100...");
+            }
+        });
+    </script>
+</body>
+
+</html>

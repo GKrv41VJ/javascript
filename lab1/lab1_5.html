@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Таблица</h1>
+    
+    <form id="PrimeForm">
+        <div class="container">
+            <label for="rows">Количество строк:</label>
+            <input type="number" id="rows" min="1">
+            <button type="submit" id="drawButton">Рисовать</button>
+        </div>
+    </form>
+
+    <script>
+        "use strict";
+        function TableGen(event) {
+            event.preventDefault();
+
+            const rows = parseInt(document.getElementById('rows').value);
+            const resultDiv = document.getElementById('result');
+
+            console.clear();
+
+            Generator(rows);
+
+            resultDiv.innerHTML = '<p> Таблица выведена в консоль</p>';
+        };
+
+        function Generator(rows) {
+            const pattern = ['dog', 'dog', 'dog', 'cat', 'cat'];
+            let ipat = 0;
+
+            for (let i = 0; i < rows; i++) {
+                let row = [];
+                for (let j = 0; j < 6; j++) {
+                    row.push(pattern[ipat % pattern.length]);
+                    ipat++;
+                }
+
+                console.log(row.join('\t'));
+            }
+        };
+        document.getElementById('PrimeForm').addEventListener('submit', TableGen)
+    </script>
+</body>
+
+</html>
