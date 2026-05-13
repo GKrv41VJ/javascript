@@ -10,10 +10,13 @@
 <body>
 
     <h1>Считать ворон</h1>
-    <div>
-        <input type="number" id="num" required>
-        <button id="CrowButton">Считать</button>
-    </div>
+    <form>
+        <div>
+            <input type="number" id="num" required>
+            <button id="CrowButton">Считать</button>
+        </div>
+    </form>
+
 
     <script>
         "use strict";
@@ -26,7 +29,7 @@
 
             let ending;
 
-            if (num %100 >= 10 && num %100 <= 19) {
+            if (num % 100 >= 10 && num % 100 <= 19) {
                 ending = "ворон";
             }
             else {
