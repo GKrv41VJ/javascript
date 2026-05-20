@@ -44,7 +44,7 @@ function isLeapYear(year) {
 function factorial(n) {
   if (n === 0)
     return 1n;
-  return BigInt(n)*factorial(n - 1);
+  return BigInt(n) * factorial(n - 1);
 }
 
 
@@ -53,15 +53,9 @@ function factorial(n) {
  * @param {number} n номер искомого числа Фибоначчи
  * @return {BigInt} n-oe число Фибоначчи
  */
-function fib(n) {
-  let a = 0n;
-  let b = 1n;
-  for (let i = 0; i < n; i++) {
-    let temp = b;
-    b = a + b;
-    a = temp;
-  }
-  return a;
+function fib(n, a = 0n, b = 1n) {
+  if (n === 0) return a;
+  return fib(n - 1, b, a + b);
 }
 
 
