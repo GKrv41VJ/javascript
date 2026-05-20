@@ -51,6 +51,8 @@ function factorial(n) {
 /**
  * Возвращает n-ое число Фибоначчи.
  * @param {number} n номер искомого числа Фибоначчи
+ * @param {BigInt} a - первый рекурсивный аргумент
+ * @param {BigInt} b - второй рекурсивный аргумент
  * @return {BigInt} n-oe число Фибоначчи
  */
 function fib(n, a = 0n, b = 1n) {
