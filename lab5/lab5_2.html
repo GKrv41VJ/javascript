@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Список из объекта</title>
+    <style>
+        li {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+
+
+<body>
+    <div id="container"></div>
+    <script>
+        'use strict';
+
+        function createTree(container, obj) {
+            container.innerHTML = createTreeText(obj);
+        }
+
+        function createTreeText(obj) {
+            if (Object.keys(obj).length === 0) return '';
+
+            let html = '<ul>';
+            for (let key in obj) {
+                html += `<li>${key}${createTreeText(obj[key])}</li>`;
+            }
+            html += '</ul>';
+
+            return html;
+        }
+
+        let data = {
+            "Рыбы": {
+                "форель": {},
+                "лосось": {}
+            },
+            "Деревья": {
+                "Огромные": {
+                    "секвойя": {},
+                    "дуб": {}
+                },
+                "Цветковые": {
+                    "яблоня": {},
+                    "магнолия": {}
+                }
+            }
+        };
+
+        document.addEventListener("DOMContentLoaded", function () {
+            let container = document.getElementById('container');
+            createTree(container, data);
+        });
+
+    </script>
+</body>
+
+</html>
