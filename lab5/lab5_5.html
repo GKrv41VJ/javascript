@@ -79,7 +79,7 @@
 
 		removeButtons.forEach(function (button) {
 			button.addEventListener('click', function () {
-				button.parentNode.remove();
+				button.parentNode.hidden = true;
 			});
 		});
 	</script>
