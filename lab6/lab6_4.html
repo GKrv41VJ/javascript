@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Таблица</title>
+    <style>
+        body {
+            margin: 0;
+            height: 50vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: "Times new roman", sans-serif;
+            color: #502525;
+            background-color: #161616;
+            background-image: url('pattern.svg');
+        }
+
+        table {
+            border-collapse: separate;
+            border-spacing: 10px;
+            width: 70%;
+            margin: 0 auto;
+        }
+
+
+        th,
+        td {
+            border: 2px solid #502525;
+            background-color: #c8c8c8cc;
+            border-radius: 5px;
+            padding: 30px;
+        }
+
+        td textarea {
+            width: 100%;
+            height: 100%;
+            box-sizing: border-box;
+            resize: none;
+            background-color: #ecececd4;
+        }
+
+        .edit-buttons {
+            margin-top: 5px;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <table id="editable-table">
+        <tr>
+            <th>Заголовок 1</th>
+            <th>Заголовок 2</th>
+        </tr>
+        <tr>
+            <td>Элемент 1</td>
+            <td>Элемент 2</td>
+        </tr>
+        <tr>
+            <td>Элемент 3</td>
+            <td>Элемент 4</td>
+        </tr>
+        <tr>
+            <td>Элемент 5</td>
+            <td>Элемент 6</td>
+        </tr>
+    </table>
+
+    <script>
+        'use strict';
+
+        const table = document.getElementById('editable-table');
+
+        if (sessionStorage.tableData) table.innerHTML = sessionStorage.tableData;
+
+        table.onclick = function (e) {
+            const btn = e.target.closest('button');
+            const td = e.target.closest('td');
+
+            if (btn) {
+                const currentTd = btn.closest('td');
+                const isSave = btn.className === 'ok-button';
+                currentTd.innerHTML = isSave ? currentTd.querySelector('textarea').value : currentTd.dataset.original;
+                if (isSave) sessionStorage.tableData = table.innerHTML;
+                return;
+            }
+
+            if (td && !table.querySelector('textarea') && e.target.tagName !== 'TEXTAREA') {
+                td.dataset.original = td.innerHTML;
+                td.innerHTML = `<textarea>${td.innerHTML.replace(/[&<>]/g, m => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' })[m])}</textarea>
+            <div class="edit-buttons"><button class="ok-button">OK</button><button class="cancel-button">ОТМЕНА</button></div>`;
+                td.querySelector('textarea').focus();
+            }
+        };
+
+    </script>
+
+</body>
+
+</html>

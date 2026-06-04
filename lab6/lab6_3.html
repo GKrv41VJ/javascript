@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Редактирование текста</title>
+    <style>
+        body {
+            margin: 0;
+            height: 50vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #displayedText,
+        textarea {
+            text-align: center;
+            font-size: 18px;
+            padding: 20px;
+        }
+
+        textarea {
+            width: 75%;
+            height: 200px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="displayedText">Ctrl+E для редактирования. Ctrl+S для сохранения изменений (сохраняется локально).</div>
+
+    <script>
+        'use strict'
+
+        const view = document.getElementById('displayedText');
+        let area = null;
+        const savedContent = localStorage.getItem('editable_content');
+
+        if (savedContent) {
+            view.innerHTML = savedContent;
+        }
+
+        document.addEventListener('keydown', function (event) {
+            if (event.code === 'KeyE' && (event.ctrlKey || event.metaKey)) {
+                if (document.getElementById('displayedText')) {
+                    event.preventDefault();
+                    area = document.createElement('textarea');
+                    area.value = view.innerHTML;
+                    view.replaceWith(area);
+                    area.focus();
+                }
+                return;
+            }
+
+            if (event.code === 'KeyS' && (event.ctrlKey || event.metaKey)) {
+                if (area && !document.getElementById('displayedText')) {
+                    event.preventDefault();
+                    view.innerHTML = area.value;
+                    localStorage.setItem('editable_content', area.value);
+                    area.replaceWith(view);
+                }
+                return;
+            }
+
+            if (event.code === 'Escape') {
+                if (area && !document.getElementById('displayedText')) {
+                    area.replaceWith(view);
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
